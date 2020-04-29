@@ -1,3 +1,7 @@
+provider "aws" {
+  region = var.region
+}
+
 resource "aws_s3_bucket" "bucket" {
   bucket = "${var.prefix}-${var.name}"
   acl    = "public-read"
