@@ -1,2 +1,2 @@
-variable "bucket" {}
-
+variable "prefix" {}
+variable "name" {}
