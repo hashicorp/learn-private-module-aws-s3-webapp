@@ -1,3 +1,3 @@
-variable "region" {}
-variable "prefix" {}
-variable "name" {}
+variable "name" {
+  default = "jade101.com"
+}
