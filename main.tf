@@ -1,9 +1,8 @@
 provider "aws" {
-  region = var.region
 }
 
-resource "aws_s3_bucket" "bucket" {
-  bucket = "${var.prefix}-${var.name}"
+resource "aws_s3_bucket" "this_bucket" {
+  bucket = var.name
   acl    = "public-read"
 
   policy = <<EOF
@@ -18,7 +17,7 @@ resource "aws_s3_bucket" "bucket" {
                 "s3:GetObject"
             ],
             "Resource": [
-                "arn:aws:s3:::${var.prefix}-${var.name}/*"
+                "arn:aws:s3:::${var.name}/*"
             ]
         }
     ]
@@ -33,11 +32,24 @@ EOF
   force_destroy = true
 }
 
-resource "aws_s3_bucket_object" "webapp" {
-  acl          = "public-read"
-  key          = "index.html"
-  bucket       = aws_s3_bucket.bucket.id
-  content      = file("${path.module}/assets/index.html")
+resource "aws_s3_bucket_object" "example" {
+
+  for_each = fileset("${path.module}/assets", "**")
+
+  bucket = aws_s3_bucket.this_bucket.bucket
+  key    = each.value
   content_type = "text/html"
+  acl          = "public-read"
+  source = "${path.module}/assets/${each.value}"
+
 
 }
+
+#resource "aws_s3_bucket_object" "error" {
+#  acl          = "public-read"
+#  key          = "error.html"
+#  bucket       = aws_s3_bucket.bucket.id
+#  content      = file("${path.module}/assets/error.html")
+#  content_type = "text/html"
+
+#}
