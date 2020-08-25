@@ -1,3 +1,3 @@
 region = "eu-west-1"
-prefix = "auto2"
-name = "test2"
+prefix = "auto22"
+name = "test22"
