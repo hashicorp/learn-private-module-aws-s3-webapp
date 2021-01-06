@@ -25,11 +25,7 @@
     </select>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="8faeb0c0-ad35-4ab9-8561-1e1895ee57da" name="Default Changelist" comment="added picture &quot;Coming Soon!&quot;">
-      <change afterPath="$PROJECT_DIR$/assets/Jenkinsfile" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Jenkinsfile" beforeDir="false" afterPath="$PROJECT_DIR$/Jenkinsfile" afterDir="false" />
-    </list>
+    <list default="true" id="8faeb0c0-ad35-4ab9-8561-1e1895ee57da" name="Default Changelist" comment="changed to windows format" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -123,7 +119,14 @@
       <option name="project" value="LOCAL" />
       <updated>1595067607497</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="changed to windows format">
+      <created>1609953740102</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1609953740102</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -156,24 +159,7 @@
     <MESSAGE value="corrected Jenkinsfile case" />
     <MESSAGE value="added backend.tf" />
     <MESSAGE value="added picture &quot;Coming Soon!&quot;" />
-    <option name="LAST_COMMIT_MESSAGE" value="added picture &quot;Coming Soon!&quot;" />
-  </component>
-  <component name="WindowStateProjectService">
-    <state x="702" y="342" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1595081517837">
-      <screen x="0" y="0" width="1920" height="1080" />
-    </state>
-    <state x="702" y="342" key="#com.intellij.fileTypes.FileTypeChooser/0.0.1920.1080@0.0.1920.1080" timestamp="1595081517837" />
-    <state x="640" y="276" key="#com.intellij.openapi.updateSettings.impl.PluginUpdateInfoDialog" timestamp="1594380301364">
-      <screen x="0" y="0" width="1920" height="1080" />
-    </state>
-    <state x="640" y="276" key="#com.intellij.openapi.updateSettings.impl.PluginUpdateInfoDialog/0.0.1920.1080@0.0.1920.1080" timestamp="1594380301364" />
-    <state x="552" y="273" key="Vcs.Push.Dialog.v2" timestamp="1595067620679">
-      <screen x="0" y="0" width="1920" height="1080" />
-    </state>
-    <state x="552" y="273" key="Vcs.Push.Dialog.v2/0.0.1920.1080@0.0.1920.1080" timestamp="1595067620679" />
-    <state x="769" y="454" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1595065330410">
-      <screen x="0" y="0" width="1920" height="1080" />
-    </state>
-    <state x="769" y="454" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1920.1080@0.0.1920.1080" timestamp="1595065330410" />
+    <MESSAGE value="changed to windows format" />
+    <option name="LAST_COMMIT_MESSAGE" value="changed to windows format" />
   </component>
 </project>

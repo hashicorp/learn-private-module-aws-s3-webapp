@@ -12,8 +12,6 @@ pipeline {
             steps {
                 git "${GIT_REPO}"
                bat "ls"
-                bat 'curl -o tf.zip https://releases.hashicorp.com/terraform/0.12.28/terraform_0.12.28_linux_amd64.zip ; yes | unzip tf.zip'
-                bat 'terraform version'
             }
         }
 
