@@ -1,0 +1,34 @@
+pipeline {
+
+    agent any
+
+    environment {
+        GIT_REPO = "https://github.com/julianddd/terraform-aws-s3-webapp"
+
+    }
+
+    stages {
+        stage('Preparation') {
+            steps {
+                git "${GIT_REPO}"
+               sh "ls"
+            }
+        }
+
+        stage('Upload') {
+
+            steps {
+                dir('./'){
+
+
+                    withAWS(region:'eu-west-2',profile:'Jenkins-S3') {
+
+                        // Upload files from working directory in your project workspace
+                        s3Upload(bucket:"www.jade101.com", workingDir:'assets', includePathPattern:'**/*');
+                    }
+                }
+            }
+
+        }
+    }
+}
