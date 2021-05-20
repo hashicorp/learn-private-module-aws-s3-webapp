@@ -1,0 +1,40 @@
+name: "Release"
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  release-patch:
+    runs-on: ubuntu-latest
+    env:
+      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    steps:
+      - uses: rymndhng/release-on-push-action@v0.18.0
+        if: contains(github.event.pull_request.labels.*.name, 'release:patch')
+        id: release-patch
+        with:
+          bump_version_scheme: patch
+
+  release-minor:
+    runs-on: ubuntu-latest
+    env:
+      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    steps:
+      - uses: rymndhng/release-on-push-action@v0.18.0
+        if: contains(github.event.pull_request.labels.*.name, 'release:minor')
+        id: release-minor
+        with:
+          bump_version_scheme: minor
+
+  release-major:
+    runs-on: ubuntu-latest
+    env:
+      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    steps:
+      - uses: rymndhng/release-on-push-action@v0.18.0
+        if: contains(github.event.pull_request.labels.*.name, 'release:major')
+        id: release-major
+        with:
+          bump_version_scheme: major
