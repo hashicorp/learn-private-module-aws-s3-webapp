@@ -1,15 +1,11 @@
 variable "region" {
-  description = "region name"
-  type        = string
-  default     = "us-east-1"
+  description = "This is the cloud hosting region where your webapp will be deployed."
 }
 variable "prefix" {
-  description = "prefix name"
-  type        = string
-  default     = "robin"
+  description = "This is the environment your webapp will be prefixed with. dev, qa, or prod"
+
 }
 variable "name" {
-  description = "environment naem"
-  type        = string
-  default     = "dev-test"
+  description = "Your name to attach to the webapp address"
+
 }
