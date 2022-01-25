@@ -3,7 +3,7 @@ terraform {
     aws = {
       source = "hashicorp/aws"
     }
-    andom = {
+    random = {
       source  = "hashicorp/random"
       version = "3.0.1"
     }
