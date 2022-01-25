@@ -49,6 +49,9 @@ EOF
 
   }
   force_destroy = true
+  tags ={
+    Name = "s3 Webapp"
+  }
 }
 
 resource "aws_s3_bucket_object" "webapp" {
