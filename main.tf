@@ -3,13 +3,20 @@ terraform {
     aws = {
       source = "hashicorp/aws"
     }
+    andom = {
+      source  = "hashicorp/random"
+      version = "3.0.1"
+    }
   }
   cloud {
     organization = "tyreepearson"
     workspaces {
-      name="terraform-aws-s3-webapp"
+
+      name = "terraform-aws-s3-webapp"
     }
   }
+  required_version = ">= 1.1.0"
+
 }
 
 provider "aws" {
@@ -46,7 +53,7 @@ EOF
   }
   force_destroy = true
   tags = {
-    Name = "S3-WebApp"
+    Name    = "S3-WebApp"
     Version = "1.0.1"
   }
 }
@@ -58,11 +65,4 @@ resource "aws_s3_bucket_object" "webapp" {
   content      = file("${path.module}/assets/index.html")
   content_type = "text/html"
 
-}
-module "s3-webapp" {
-  source  = "app.terraform.io/Getting-Started/s3-webapp/aws"
-  name    = var.name
-  region  = var.region
-  prefix  = var.prefix
-  version = "1.0.1"
 }
