@@ -23,7 +23,7 @@ provider "aws" {
   region = var.region
 }
 
-resource "aws_s3_bucket" "bucket" {
+resource "aws_s3_bucket" "bucket_for_s3_webapp" {
   bucket = "${var.prefix}-${var.name}"
   acl    = "public-read"
 
