@@ -3,11 +3,15 @@ terraform {
     aws = {
       source = "hashicorp/aws"
     }
+    random = {
+      source  = "hashicorp/random"
+      version = "3.0.1"
+    }
   }
   cloud {
     organization = "tyreepearson"
     workspaces {
-      name="terraform-aws-s3-webapp"
+      name = "terraform-aws-s3-webapp"
     }
   }
 }
