@@ -11,14 +11,14 @@ provider "aws" {
   region = var.region
 }
 
-resource "aws_s3_bucket" "bucket" {
+resource "aws_s3_bucket" "bucket-nielsen-2022" {
   bucket = "${var.prefix}-${var.name}"
 
   force_destroy = true
 }
 
 resource "aws_s3_bucket_website_configuration" "bucket" {
-  bucket = aws_s3_bucket.bucket.id
+  bucket = aws_s3_bucket.bucket-nielsen-2022.id
 
   index_document {
     suffix = "index.html"
@@ -30,13 +30,13 @@ resource "aws_s3_bucket_website_configuration" "bucket" {
 }
 
 resource "aws_s3_bucket_acl" "bucket" {
-  bucket = aws_s3_bucket.bucket.id
+  bucket = aws_s3_bucket.bucket-nielsen-2022.id
 
   acl = "public-read"
 }
 
 resource "aws_s3_bucket_policy" "policy" {
-  bucket = aws_s3_bucket.bucket.id
+  bucket = aws_s3_bucket.bucket-nielsen-2022.id
   policy = <<EOF
 {
     "Version": "2012-10-17",
@@ -49,7 +49,7 @@ resource "aws_s3_bucket_policy" "policy" {
                 "s3:GetObject"
             ],
             "Resource": [
-                "arn:aws:s3:::${aws_s3_bucket.bucket.id}/*"
+                "arn:aws:s3:::${aws_s3_bucket.bucket-nielsen-2022.id}/*"
             ]
         }
     ]
@@ -60,7 +60,7 @@ EOF
 resource "aws_s3_object" "webapp" {
   acl          = "public-read"
   key          = "index.html"
-  bucket       = aws_s3_bucket.bucket.id
+  bucket       = aws_s3_bucket.bucket-nielsen-2022.id
   content      = file("${path.module}/assets/index.html")
   content_type = "text/html"
 }
