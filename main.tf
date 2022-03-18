@@ -18,7 +18,7 @@ resource "aws_s3_bucket" "bucket-nielsen-2022" {
 }
 
 resource "aws_s3_bucket_website_configuration" "bucket" {
-  bucket = aws_s3_bucket.bucket.id
+  bucket = aws_s3_bucket.bucket-nielsen-2022.id
 
   index_document {
     suffix = "index.html"
