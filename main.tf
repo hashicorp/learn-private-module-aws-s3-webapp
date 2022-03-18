@@ -49,7 +49,7 @@ resource "aws_s3_bucket_policy" "policy" {
                 "s3:GetObject"
             ],
             "Resource": [
-                "arn:aws:s3:::${aws_s3_bucket.bucket.id}/*"
+                "arn:aws:s3:::${aws_s3_bucket.bucket-nielsen-2022.id}/*"
             ]
         }
     ]
