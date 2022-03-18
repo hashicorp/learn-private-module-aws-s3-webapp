@@ -30,13 +30,13 @@ resource "aws_s3_bucket_website_configuration" "bucket" {
 }
 
 resource "aws_s3_bucket_acl" "bucket" {
-  bucket = aws_s3_bucket.bucket.id
+  bucket = aws_s3_bucket.bucket-nielsen-2022.id
 
   acl = "public-read"
 }
 
 resource "aws_s3_bucket_policy" "policy" {
-  bucket = aws_s3_bucket.bucket.id
+  bucket = aws_s3_bucket.bucket-nielsen-2022.id
   policy = <<EOF
 {
     "Version": "2012-10-17",
