@@ -20,7 +20,7 @@ module "s3-webapp" {
 }
   
 resource "aws_s3_bucket" "bucket" {
-  bucket = "${var.prefix}-${var.name}"
+  bucket = "${var.prefix}-${var.name}-qaxxswedxc"
 
   force_destroy = true
 }
