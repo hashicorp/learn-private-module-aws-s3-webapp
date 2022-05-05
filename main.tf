@@ -1,7 +1,7 @@
 provider "aws" {
   region = var.region
 }
-/*
+
 resource "aws_s3_bucket" "bucket" {
   bucket = "${var.prefix}-${var.name}"
   acl    = "public-read"
@@ -24,15 +24,9 @@ resource "aws_s3_bucket" "bucket" {
     ]
 }
 EOF
-
-  website {
-    index_document = "index.html"
-    error_document = "error.html"
-
-  }
   force_destroy = true
 }
-*/
+
 /*
 resource "aws_s3_bucket_object" "webapp" {
   acl          = "public-read"
