@@ -32,7 +32,7 @@ EOF
   }
   force_destroy = true
 }
-
+/*
 resource "aws_s3_bucket_object" "webapp" {
   acl          = "public-read"
   key          = "index.html"
@@ -40,4 +40,25 @@ resource "aws_s3_bucket_object" "webapp" {
   content      = file("${path.module}/assets/index.html")
   content_type = "text/html"
 
+}
+*/
+resource "aws_s3_bucket_website_configuration" "example" {
+  bucket = aws_s3_bucket.bucket
+
+  index_document {
+    suffix = "index.html"
+  }
+
+  error_document {
+    key = "error.html"
+  }
+
+  routing_rule {
+    condition {
+      key_prefix_equals = "docs/"
+    }
+    redirect {
+      replace_key_prefix_with = "documents/"
+    }
+  }
 }
