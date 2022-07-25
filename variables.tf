@@ -13,3 +13,7 @@ variable "name" {
   type        = string
   
 }
+variable "instance_size" {
+  description = "Instance size: options are: t1.micro, t3.small, t2small, t3.micro"
+  type = string
+}
