@@ -1,22 +1,10 @@
 terraform {
-  cloud { 
-    organization = "tyreepearson"
-    hostname ="app.terraform.io"
-    workspaces {
-      name = "terraform-aws-s3-webapp"
-    }
-  }
   required_providers {
     aws = {
-      source = "hashicorp/aws"
-    }
-    random = {
-      source  = "hashicorp/random"
-      version = "3.0.1"
+      source  = "hashicorp/aws"
+      version = "~> 4.0.0"
     }
   }
-  
-  
 }
 
 provider "aws" {
@@ -25,8 +13,30 @@ provider "aws" {
 
 resource "aws_s3_bucket" "bucket_for_s3_webapp" {
   bucket = "${var.prefix}-${var.name}"
-  acl    = "public-read"
 
+  force_destroy = true
+}
+
+resource "aws_s3_bucket_website_configuration" "bucket" {
+  bucket = aws_s3_bucket.bucket.id
+
+  index_document {
+    suffix = "index.html"
+  }
+
+  error_document {
+    key = "error.html"
+  }
+}
+
+resource "aws_s3_bucket_acl" "bucket" {
+  bucket = aws_s3_bucket.bucket.id
+
+  acl = "public-read"
+}
+
+resource "aws_s3_bucket_policy" "policy" {
+  bucket = aws_s3_bucket.bucket.id
   policy = <<EOF
 {
     "Version": "2012-10-17",
@@ -39,7 +49,7 @@ resource "aws_s3_bucket" "bucket_for_s3_webapp" {
                 "s3:GetObject"
             ],
             "Resource": [
-                "arn:aws:s3:::${var.prefix}-${var.name}/*"
+                "arn:aws:s3:::${aws_s3_bucket.bucket.id}/*"
             ]
         }
     ]
@@ -58,13 +68,12 @@ EOF
   }
 }
 
-resource "aws_s3_bucket_object" "webapp" {
+resource "aws_s3_object" "webapp" {
   acl          = "public-read"
   key          = "index.html"
   bucket       = aws_s3_bucket.bucket.id
   content      = file("${path.module}/assets/index.html")
   content_type = "text/html"
-
 }
 
 module "ec2-instance" {
