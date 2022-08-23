@@ -1,3 +1,3 @@
-# Learn Private Module Registry
+# Share Modules in the Private Registry
 
-The companion repository for the [Learn guide](https://learn.hashicorp.com/terraform/modules/private-modules) on using the private module registry in Terraform Cloud.
+The companion repository for the [Learn tutorial](https://learn.hashicorp.com/tutorials/terraform/module-private-registry-share) on using the private registry in Terraform Cloud.
