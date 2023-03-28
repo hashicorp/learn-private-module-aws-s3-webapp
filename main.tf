@@ -54,7 +54,7 @@ resource "aws_s3_object" "webapp" {
 
 resource "aws_instance" "web" {
   instance_type = "t2.micro"
-  
+  ami = "ami-00c39f71452c08778"
   tags = {
     Name = "${var.name}"
     Region = "${var.region}"
