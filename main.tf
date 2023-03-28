@@ -52,4 +52,11 @@ resource "aws_s3_object" "webapp" {
   content_type = "text/html"
 }
 
-#TESTTESTTEST
+resource "aws_instance" "web" {
+  instance_type = "t2.micro"
+  
+  tags = {
+    Name = "${var.name}"
+    Region = "${var.region}"
+  }
+}
