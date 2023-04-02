@@ -1,3 +1,10 @@
+data "hcp_packer_image" "learn-packer-run-tasks" {
+  bucket_name    = "learn-packer-run-tasks"
+  channel        = "latest"
+  cloud_provider = "aws"
+  region         = "us-east-2"
+}
+
 resource "aws_s3_bucket" "bucket" {
   bucket_prefix = "${var.prefix}-${var.name}"
 
@@ -54,9 +61,9 @@ resource "aws_s3_object" "webapp" {
 
 resource "aws_instance" "web" {
   instance_type = "t2.micro"
-  ami = "ami-00c39f71452c08778"
+  ami           = data.hcp_packer_image.learn-packer-run-tasks.cloud_image_id
   tags = {
-    Name = "${var.name}"
+    Name   = "${var.name}"
     Region = "${var.region}"
   }
 }
