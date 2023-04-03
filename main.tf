@@ -61,7 +61,7 @@ resource "aws_s3_object" "webapp" {
 
 resource "aws_instance" "web" {
   instance_type = "t2.micro"
-  ami           = "ami-01431cd8c154caa7b"
+  ami           = data.hcp_packer_image.learn-packer-run-tasks.cloud_image_id
   tags = {
     Name   = "${var.name}"
     Region = "${var.region}"
