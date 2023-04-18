@@ -1,17 +1,10 @@
-data "hcp_packer_image" "learn-packer-run-tasks" {
-  bucket_name    = "learn-packer-run-tasks"
-  channel        = "latest"
-  cloud_provider = "aws"
-  region         = "us-east-2"
-}
-
 resource "aws_s3_bucket" "bucket" {
   bucket_prefix = "${var.prefix}-${var.name}"
 
   force_destroy = true
 }
 
-resource "aws_s3_bucket_public_access_block" "example" {
+resource "aws_s3_bucket_public_access_block" "bucket" {
   bucket = aws_s3_bucket.bucket.id
 
   block_public_acls       = false
@@ -20,7 +13,7 @@ resource "aws_s3_bucket_public_access_block" "example" {
   restrict_public_buckets = false
 }
 
-resource "aws_s3_bucket_ownership_controls" "example" {
+resource "aws_s3_bucket_ownership_controls" "bucket" {
   bucket = aws_s3_bucket.bucket.id
   rule {
     object_ownership = "ObjectWriter"
@@ -41,8 +34,8 @@ resource "aws_s3_bucket_website_configuration" "bucket" {
 
 resource "aws_s3_bucket_acl" "bucket" {
   depends_on = [
-    aws_s3_bucket_public_access_block.example,
-    aws_s3_bucket_ownership_controls.example,
+    aws_s3_bucket_public_access_block.bucket,
+    aws_s3_bucket_ownership_controls.bucket,
   ]
   bucket = aws_s3_bucket.bucket.id
 
@@ -77,13 +70,4 @@ resource "aws_s3_object" "webapp" {
   bucket       = aws_s3_bucket.bucket.id
   content      = file("${path.module}/assets/index.html")
   content_type = "text/html"
-}
-
-resource "aws_instance" "web" {
-  instance_type = "t2.micro"
-  ami           = data.hcp_packer_image.learn-packer-run-tasks.cloud_image_id
-  tags = {
-    Name   = "${var.name}"
-    Region = "${var.region}"
-  }
 }
