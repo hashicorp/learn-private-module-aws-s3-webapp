@@ -11,6 +11,10 @@ resource "aws_s3_bucket" "bucket" {
   force_destroy = true
 }
 
+resource "aws_s3_bucket_public_access_block" "example" {
+  bucket = aws_s3_bucket.bucket.id
+}
+
 resource "aws_s3_bucket_website_configuration" "bucket" {
   bucket = aws_s3_bucket.bucket.id
 
