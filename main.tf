@@ -20,6 +20,13 @@ resource "aws_s3_bucket_acl" "bucket" {
   bucket = aws_s3_bucket.bucket.id
 
   acl = "public-read"
+  depends_on = [aws_s3_bucket_ownership_controls.s3_bucket_acl_ownership]
+}
+resource "aws_s3_bucket_ownership_controls" "s3_bucket_acl_ownership" {
+  bucket = aws_s3_bucket.bucket-one-two.id
+  rule {
+    object_ownership = "ObjectWriter"
+  }
 }
 
 resource "aws_s3_bucket_policy" "policy" {
