@@ -19,7 +19,7 @@ resource "aws_s3_bucket_public_access_block" "bucket" {
 resource "aws_s3_bucket_ownership_controls" "bucket" {
   bucket = aws_s3_bucket.bucket.id
   rule {
-    object_ownership = "ObjectWriter"
+    object_ownership = "BucketOwnerPreferred"
   }
 }
 
@@ -43,13 +43,6 @@ resource "aws_s3_bucket_acl" "bucket" {
   bucket = aws_s3_bucket.bucket.id
 
   acl = "public-read"
-  depends_on = [aws_s3_bucket_ownership_controls.s3_bucket_acl_ownership]
-}
-resource "aws_s3_bucket_ownership_controls" "s3_bucket_acl_ownership" {
-  bucket = aws_s3_bucket.bucket-one-two.id
-  rule {
-    object_ownership = "ObjectWriter"
-  }
 }
 
 resource "aws_s3_bucket_policy" "policy" {
